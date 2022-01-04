@@ -1,0 +1,24 @@
+{
+  "name": "alumni-service",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^0.20.0-0",
+    "vant": "3",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.12"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.4",
+    "@vitejs/plugin-vue": "^2.0.0",
+    "less": "^4.1.2",
+    "typescript": "^4.4.4",
+    "vite": "^2.7.2",
+    "vite-plugin-style-import": "1.2.0",
+    "vue-tsc": "^0.29.8"
+  }
+}
