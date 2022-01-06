@@ -73,8 +73,10 @@ const value = 3;
         }
     }
   .bottom {
-    //border-bottom: 1px solid #ccc;
-    box-shadow: 5px 3px 10px #ccc;
+    margin-bottom: 1rem;
+    //box-shadow: 5px 3px 10px #ccc;
+
+    //box-shadow: 0 8px 12px #ebedf0;
   }
 }
 </style>

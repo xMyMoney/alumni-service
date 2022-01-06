@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import InfoCard  from "@components/MyMeCard/InfoCard.vue"
-import ActionCard from "@components/MyMeCard/ActionCard.vue"
+import InfoCard  from "@components/MyMe/InfoCard.vue"
+import ActionCard from "@components/MyMe/ActionCard.vue"
 </script>
 <template>
 <div class="main">
-   <InfoCard/>
-    <ActionCard/>
+  <InfoCard/>
+  <ActionCard/>
 </div>
 
 </template>

@@ -19,6 +19,7 @@ import { Grid, GridItem, Image,Swipe, SwipeItem } from 'vant';
 import MyHotInfo from "@components/MyNews/MyHotInfo.vue";
 import MyNoticeCard from "@components/MyNotices/MyNoticeCard.vue";
 import MyNewsCard from "@components/MyNews/MyNewsCard.vue";
+import MyHomeCard from "@components/MyHome/MyHomeCard.vue";
 
 const images = [
   'https://pig-blog.oss-cn-guangzhou.aliyuncs.com/blog-file/img/1638857103861.jpg',
@@ -26,13 +27,14 @@ const images = [
 ]
 </script>
 <template>
-  <div>
-    <Swipe autoplay="5000" duration="1500" indicator-color="white">
-      <SwipeItem v-for="image in images" :key="image">
-        <img :src="image" style="height: 12rem;width: 100%"/>
-      </SwipeItem>
-    </Swipe>
-  </div>
+<!--  <div>-->
+<!--    <Swipe autoplay="5000" duration="1500" indicator-color="white">-->
+<!--      <SwipeItem v-for="image in images" :key="image">-->
+<!--        <img :src="image" style="height: 12rem;width: 100%"/>-->
+<!--      </SwipeItem>-->
+<!--    </Swipe>-->
+<!--  </div>-->
+  <MyHomeCard/>
   <div class="service">
     <Grid :border="false" :gutter="20" column-num="4" icon-size="25px" class="grid">
       <GridItem icon="photo-o" text="找校友" />

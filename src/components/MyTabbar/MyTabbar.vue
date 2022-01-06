@@ -7,7 +7,7 @@ const active = ref(2);
 
 <template>
   <Tabbar class="tab-bar" v-model="active">
-    <TabbarItem icon="friends-o" to="/home">互助</TabbarItem>
+    <TabbarItem icon="friends-o" to="/help">互助</TabbarItem>
     <TabbarItem icon="flag-o" to="/activity">活动</TabbarItem>
     <TabbarItem to="/home">
       <div class="main">
@@ -22,13 +22,13 @@ const active = ref(2);
 <style scoped lang="less">
 .tab-bar {
   border-top: 1px solid #ccc;
-  padding: 10px 0;
+  padding: 0.5rem 0;
 
   .main {
     position: relative;
     .main-icon {
       // 样式
-      height: 80px;
+      height: 4.5rem;
       border-radius: 50%;
       padding: 5px;
       box-shadow: 0 -1px 10px rgba(#888888, 0.3);

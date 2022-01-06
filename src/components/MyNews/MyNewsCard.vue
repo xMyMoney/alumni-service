@@ -28,19 +28,26 @@ const toAllNews = () => {
 
 <style scoped lang="less">
 .main {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  width: 90%;
+  //border: 1px solid #ccc;
+  //border-radius: 10px;
+  //width: 90%;
+  //margin: 0 auto;
+  //margin-top: 1rem;
+  //padding-top: 0.5rem;
   margin: 0 auto;
-  margin-top: 1rem;
-  padding-top: 0.5rem;
+  margin-bottom: 24px;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 12px #ebedf0;
+  width: 80%;
   .left{
-    margin-left: 0.5rem;
+    //margin-left: 0.5rem;
     color: #1989fa;
   }
   .right{
     float: right;
-    margin-right: 0.3rem;
+    //margin-right: 0.3rem;
     color: gray;
   }
 }

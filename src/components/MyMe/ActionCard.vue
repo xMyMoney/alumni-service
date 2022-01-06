@@ -22,19 +22,32 @@ import { Cell, CellGroup } from 'vant';
 </template>
 <style scoped lang="less">
 .main {
-  .envelop {
-    margin-top: 1rem;
-    border: 1px solid #ccc;
-  }
-  .vCard {
-    border: 1px solid #ccc;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-  .actions {
-    border: 1px solid #ccc;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+  //.envelop {
+  //  margin-top: 1rem;
+  //  border: 1px solid #ccc;
+  //}
+  //.vCard {
+  //  border: 1px solid #ccc;
+  //  margin-top: 0.5rem;
+  //  margin-bottom: 0.5rem;
+  //}
+  //.actions {
+  //  border: 1px solid #ccc;
+  //  margin-top: 0.5rem;
+  //  margin-bottom: 0.5rem;
+  //}
+
+
+  //background-color: #f7f8fa;
+  .envelop,.vCard,.actions {
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    //padding: 0.5rem 1rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 12px #ebedf0;
+    width: 80%;
   }
 }
 </style>

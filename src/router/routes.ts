@@ -27,7 +27,12 @@ const routes: RouteRecordRaw[] = [
       {
         path: "activity",
         name: "Activity",
-        component: () => import("@views/layout/Services.vue"),
+        component: () => import("@views/layout/Activity.vue"),
+      },
+      {
+        path: "help",
+        name: "Help",
+        component: () => import("@views/layout/Help.vue")
       }
     ],
   },
@@ -40,6 +45,16 @@ const routes: RouteRecordRaw[] = [
     path: '/news',
     name: 'News',
     component: () => import("@views/news/News.vue")
+  },
+  {
+    path: '/createActive',
+    name: 'CreateActive',
+    component: () => import("@views/activity/CreateActive.vue")
+  },
+  {
+    path: '/createHelp',
+    name: 'CreateHelp',
+    component: () => import("@views/help/CreateHelp.vue")
   },
 
   // 静态

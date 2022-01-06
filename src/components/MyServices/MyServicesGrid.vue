@@ -4,7 +4,7 @@ import { Grid, GridItem } from 'vant';
 <template>
   <div class="main">
     <div class="base">
-      <span>基本功能</span>
+      <h4>基本功能</h4>
       <Grid :border="false" :gutter="15" column-num="3" icon-size="30px">
         <GridItem icon="photo-o" text="返校预约" />
         <GridItem icon="photo-o" text="毕业证明" />
@@ -14,7 +14,7 @@ import { Grid, GridItem } from 'vant';
       </Grid>
     </div>
     <div class="more">
-      <span>更多功能</span>
+      <h4>更多功能</h4>
       <Grid :border="false" :gutter="15" column-num="3" icon-size="30px">
         <GridItem icon="photo-o" text="返校预约" />
         <GridItem icon="photo-o" text="毕业证明" />
@@ -28,17 +28,24 @@ import { Grid, GridItem } from 'vant';
 </template>
 <style scoped lang="less">
 .main {
-  margin-top: 3rem;
+  //margin-top: 3rem;
+  background-color: #f7f8fa;
   .base,.more{
-    //box-shadow: 1px 1px 5px #888888;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    width: 90%;
+    //border: 1px solid #ccc;
+    //border-radius: 10px;
+    //width: 90%;
+    //margin: 0 auto;
+    //margin-top: 1rem;
+    //padding-top: 0.5rem;
     margin: 0 auto;
-    margin-top: 1rem;
-    padding-top: 0.5rem;
-    span {
-      margin-left: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 12px #ebedf0;
+    width: 80%;
+    h4 {
+      //margin-left: 0.5rem;
       color: #1989fa;
     }
   }
