@@ -22,7 +22,7 @@ const createActive = () => {
     </template>
   </Search>
 
-  <Tabs v-model:active="active" animated swipeable duration="0.5">
+  <Tabs v-model:active="active" animated swipeable duration="0.3">
     <Tab title="所有互助">
       <MyHelpItem/>
       <MyHelpItem/>

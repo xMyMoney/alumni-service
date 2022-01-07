@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { Image as VanImage, Badge, Tag, Icon, Grid, GridItem } from 'vant';
+import {useRouter} from "vue-router";
 const value = 3;
+const router = useRouter();
 </script>
 <template>
     <div class="main">
@@ -14,6 +16,7 @@ const value = 3;
                     src="https://img.yzcdn.cn/vant/cat.jpeg"
                 />
                 <template #content>
+                  性别男女要不不要了
                     <Icon name="cross" class="badge-icon"/>
                 </template>
             </Badge>
@@ -46,7 +49,7 @@ const value = 3;
                 </GridItem>
                 <GridItem>
                     <span>11</span>
-                    <span style="color: grey;">活动</span>
+                    <span style="color: grey;" @click="router.push('/myActivity')">活动</span>
                 </GridItem>
                 <GridItem>
                     <span>11</span>

@@ -6,9 +6,9 @@ import {useRouter} from "vue-router";
 const router = useRouter();
 const value = ref('');
 const active = ref(0);
-provide("activeFlag",active)
+provide("myActivity",0)
 const createActive = () => {
-  router.push('createActive')
+  router.push('createActivity')
 }
 </script>
 <template>
@@ -22,7 +22,7 @@ const createActive = () => {
     </template>
   </Search>
 
-  <Tabs v-model:active="active">
+  <Tabs v-model:active="active" animated swipeable duration="0.3">
     <Tab title="所有活动">
       <MyActivityItem/>
       <MyActivityItem/>
@@ -31,7 +31,18 @@ const createActive = () => {
       <MyActivityItem/>
       <MyActivityItem/>
     </Tab>
-    <Tab title="我的活动">
+    <Tab title="最热活动">
+      <MyActivityItem/>
+      <MyActivityItem/>
+      <MyActivityItem/>
+    </Tab>
+    <Tab title="周年校庆">
+      <MyActivityItem/>
+      <MyActivityItem/>
+    </Tab>
+    <Tab title="同学聚会">
+      <MyActivityItem/>
+      <MyActivityItem/>
       <MyActivityItem/>
       <MyActivityItem/>
     </Tab>
@@ -39,6 +50,6 @@ const createActive = () => {
 
 </template>
 
-<style scoped>
+<style scoped lang="less">
 
 </style>

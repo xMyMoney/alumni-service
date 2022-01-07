@@ -47,9 +47,14 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@views/news/News.vue")
   },
   {
-    path: '/createActive',
-    name: 'CreateActive',
-    component: () => import("@views/activity/CreateActive.vue")
+    path: '/createActivity',
+    name: 'CreateActivity',
+    component: () => import("@views/activity/CreateActivity.vue")
+  },
+  {
+    path: '/myActivity',
+    name: 'MyActivity',
+    component: () => import("@views/activity/MyActivity.vue")
   },
   {
     path: '/createHelp',
