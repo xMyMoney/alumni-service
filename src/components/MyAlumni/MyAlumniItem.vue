@@ -1,35 +1,29 @@
 <script setup lang="ts">
 import {Image,Tag,SwipeCell,Button} from "vant";
 import { inject, ref } from "vue";
-
-const myHelp = inject("myHelp");
 </script>
 <template>
-  <SwipeCell>
     <div class="main">
-    <h3 class="title">创业公司求赞助</h3>
-    <div class="info">
-      <Image
-          round
-          width="1rem"
-          height="1rem"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-      />
-      <span>朱学长</span>
-      <span>软件工程2018届</span>
+      <h3 class="title">创业公司求赞助</h3>
+      <div class="info">
+        <Image
+            round
+            width="1rem"
+            height="1rem"
+            src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <span>朱学长</span>
+        <span>软件工程2018届</span>
+      </div>
+      <p class="content">
+        校友聚会速来校友聚会速来校友聚会速来校友聚会速来
+        校友聚会速来校友聚会速来校友聚会速来校友聚会速来
+      </p>
+      <div class="category">
+        <Tag type="success">校友集资</Tag>
+      </div>
     </div>
-    <p class="content">
-      校友聚会速来校友聚会速来校友聚会速来校友聚会速来
-      校友聚会速来校友聚会速来校友聚会速来校友聚会速来
-    </p>
-    <div class="category">
-      <Tag type="success">校友集资</Tag>
-    </div>
-  </div>
-    <template #right v-if="myHelp">
-      <Button square text="删除" type="danger" class="delete-bottom" />
-    </template>
-  </SwipeCell>
+
 
 </template>
 

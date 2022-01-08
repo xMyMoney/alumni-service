@@ -16,7 +16,6 @@ const router = useRouter();
                     src="https://img.yzcdn.cn/vant/cat.jpeg"
                 />
                 <template #content>
-                  性别男女要不不要了
                     <Icon name="cross" class="badge-icon"/>
                 </template>
             </Badge>
@@ -41,11 +40,11 @@ const router = useRouter();
             <Grid :border="false">
                 <GridItem>
                     <span>11</span>
-                    <span style="color: grey;">相册</span>
+                    <span style="color: grey;">捐赠</span>
                 </GridItem>
                 <GridItem>
                     <span>11</span>
-                    <span style="color: grey;">互助</span>
+                    <span style="color: grey;" @click="router.push('/myHelp')">互助</span>
                 </GridItem>
                 <GridItem>
                     <span>11</span>
@@ -81,5 +80,9 @@ const router = useRouter();
 
     //box-shadow: 0 8px 12px #ebedf0;
   }
+}
+:deep(.van-badge) {
+  // 自己微调
+  transform: translate(-5px);
 }
 </style>

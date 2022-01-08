@@ -61,6 +61,16 @@ const routes: RouteRecordRaw[] = [
     name: 'CreateHelp',
     component: () => import("@views/help/CreateHelp.vue")
   },
+  {
+    path: '/myHelp',
+    name: '/MyHelp',
+    component: () => import("@views/help/MyHelp.vue")
+  },
+  {
+    path: '/alumni',
+    name: '/Alumni',
+    component: () => import("@views/alumni/Alumni.vue")
+  },
 
   // 静态
   ...constRoutes,

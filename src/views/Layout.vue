@@ -1,14 +1,9 @@
 <script setup lang="ts">
 import MyTabbarVue from "@components/MyTabbar/MyTabbar.vue";
-import {NavBar,Sticky} from "vant";
+import {Sticky} from "vant";
 </script>
 
 <template>
-<!--  <div>-->
-<!--    <Sticky>-->
-<!--      <NavBar class="nav" title="桂航校友之家"/>-->
-<!--    </Sticky>-->
-<!--  </div>-->
 
 
   <div class="container">

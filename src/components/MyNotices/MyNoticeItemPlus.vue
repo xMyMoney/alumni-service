@@ -6,7 +6,7 @@
     <span class="title">标题标题标题标题标题</span>
     <div>
       <span class="time">2022年01月01日</span>
-      <span class="read">11人已阅读</span>
+      <span class="read">11人阅读</span>
     </div>
   </div>
 </template>

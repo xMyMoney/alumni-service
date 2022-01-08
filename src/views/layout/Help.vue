@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import {Search,Tab, Tabs} from "vant";
-import { ref } from 'vue';
+import {provide, ref} from 'vue';
 import MyActivityItem from "@components/MyActivity/MyActivityItem.vue";
 import {useRouter} from "vue-router";
 import MyHelpItem from "@components/MyHelp/MyHelpItem.vue";
 const router = useRouter();
 const value = ref('');
 const active = ref(0);
-const createActive = () => {
-  router.push('createActive')
-}
+provide('myHelp',0)
 </script>
 <template>
   <Search class="search"
@@ -18,7 +16,7 @@ const createActive = () => {
           shape="round"
           placeholder="请输入搜索关键词">
     <template #action>
-      <div @click="createActive">发布</div>
+      <div @click="router.push('createHelp')">发布</div>
     </template>
   </Search>
 
