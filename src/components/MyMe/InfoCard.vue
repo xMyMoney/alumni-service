@@ -40,7 +40,7 @@ const router = useRouter();
             <Grid :border="false">
                 <GridItem>
                     <span>11</span>
-                    <span style="color: grey;">捐赠</span>
+                    <span style="color: grey;" @click="router.push('/myDonation')">捐赠</span>
                 </GridItem>
                 <GridItem>
                     <span>11</span>

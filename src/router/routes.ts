@@ -71,6 +71,21 @@ const routes: RouteRecordRaw[] = [
     name: '/Alumni',
     component: () => import("@views/alumni/Alumni.vue")
   },
+  {
+    path: '/donation',
+    name: '/Donation',
+    component: () => import("@views/donation/Donation.vue"),
+  },
+  {
+    path: '/donation/detail',
+    name: '/DonationDetail',
+    component: () => import("@views/donation/DonationDetail.vue"),
+  },
+  {
+    path: '/myDonation',
+    name: '/MyDonation',
+    component: () => import("@views/donation/MyDonation.vue"),
+  },
 
   // 静态
   ...constRoutes,

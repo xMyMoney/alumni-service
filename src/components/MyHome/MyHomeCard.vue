@@ -33,7 +33,7 @@ const router = useRouter();
         <GridItem icon="photo-o" text="找校友" @click="router.push('/alumni')"/>
         <GridItem icon="photo-o" text="找活动" @click="router.push('/activity')"/>
         <GridItem icon="photo-o" text="找互助" @click="router.push('/help')"/>
-        <GridItem icon="photo-o" text="回馈母校" />
+        <GridItem icon="photo-o" text="回馈母校" @click="router.push('/donation')"/>
       </Grid>
     </div>
   </div>
