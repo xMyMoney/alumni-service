@@ -1,23 +1,16 @@
 <script setup lang="ts">
-import { NavBar,Search } from 'vant';
+import { Search } from 'vant';
 import {provide, ref} from "vue";
 import MyActivityItem from "@components/MyActivity/MyActivityItem.vue";
 import {useRouter} from "vue-router";
-const comeback = () => {
-  history.back()
-}
+import MyNavBar from "@components/MyNavBar/MyNavBar.vue";
 const value = ref('');
 provide("myActivity",1)
+provide('navTitle','我的活动')
 const router = useRouter();
 </script>
 <template>
-  <NavBar
-      class="nav"
-      title="我的活动"
-      left-text="返回"
-      left-arrow
-      @click-left="comeback"
-  />
+  <MyNavBar/>
   <Search class="search"
           show-action
           v-model="value"

@@ -1,14 +1,23 @@
 <script setup lang="ts">
-import { NavBar,Icon } from "vant";
-import { ref } from "vue";
-const active = ref(0)
+import { NavBar } from "vant";
+import {inject} from "vue";
+
+const comeback = () => {
+  history.back()
+}
+const title = inject('navTitle')
 </script>
 
 <template>
+  <div>
+    <NavBar
+        class="nav"
+        :title= "title"
+        left-text="返回"
+        left-arrow
+        @click-left="comeback"
+    />
+  </div>
 
-    <NavBar title="标题" left-text="返回" left-arrow :fixed=true>
-        <template #right>
-            <Icon name="search" size="18" />
-        </template>
-    </NavBar>
+
 </template>

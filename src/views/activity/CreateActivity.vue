@@ -1,17 +1,10 @@
 <script setup lang="ts">
-import { NavBar } from 'vant';
-const comeback = () => {
-  history.back()
-}
+import MyNavBar from "@components/MyNavBar/MyNavBar.vue";
+import {provide} from "vue";
+provide('navTitle','发起活动')
 </script>
 <template>
-  <NavBar
-      class="nav"
-      title="发起活动"
-      left-text="返回"
-      left-arrow
-      @click-left="comeback"
-  />
+  <MyNavBar/>
 <div>sada</div>
 </template>
 
