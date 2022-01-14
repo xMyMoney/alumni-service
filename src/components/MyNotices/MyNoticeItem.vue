@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import {useRouter} from "vue-router";
 
+const router = useRouter();
 </script>
 <template>
-  <div class="noticeItem">
+  <div class="noticeItem" @click="router.push('/noticeDetail')">
     <span class="title">标题标题标题标题标题</span>
     <div><span class="time">2022年01月01日</span></div>
   </div>

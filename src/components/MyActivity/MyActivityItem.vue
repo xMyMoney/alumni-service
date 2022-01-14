@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { Icon, Image, Tag, SwipeCell, Button } from "vant";
-import { inject, ref } from "vue";
-
+import {inject, provide, ref} from "vue";
+import {useRouter} from "vue-router";
+const router = useRouter()
 const myActivity = inject("myActivity");
 </script>
 <template>
   <SwipeCell>
     <div class="main">
       <div class="container">
-        <div class="cover">
+        <div class="cover" @click="router.push('/activityDetail')">
           <Image
               radius="0.5rem"
               fit="contain"

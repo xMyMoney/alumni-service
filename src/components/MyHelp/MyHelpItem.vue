@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import {Image,Tag,SwipeCell,Button} from "vant";
 import { inject, ref } from "vue";
-
+import {useRouter} from "vue-router";
+const router = useRouter();
 const myHelp = inject("myHelp");
 </script>
 <template>
   <SwipeCell>
-    <div class="main">
+    <div class="main" @click="router.push('/helpDetail')">
     <h3 class="title">创业公司求赞助</h3>
     <div class="info">
       <Image

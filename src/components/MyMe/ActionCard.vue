@@ -4,7 +4,8 @@ import { Cell, CellGroup } from 'vant';
 <template>
   <div class="main">
     <CellGroup inset class="envelop">
-      <Cell icon="envelop-o" title="致校友的一封信" size="large" is-link />
+      <Cell icon="envelop-o" title="致校友的一封信"
+            size="large" is-link to="/letter"/>
     </CellGroup>
 
     <CellGroup inset class="vCard">

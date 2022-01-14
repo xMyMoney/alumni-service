@@ -52,6 +52,11 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@views/news/News.vue")
   },
   {
+    path: '/newsDetail',
+    name: 'NewsDetail',
+    component: () => import("@views/news/NewsDetail.vue")
+  },
+  {
     path: '/createActivity',
     name: 'CreateActivity',
     component: () => import("@views/activity/CreateActivity.vue")
@@ -60,6 +65,11 @@ const routes: RouteRecordRaw[] = [
     path: '/myActivity',
     name: 'MyActivity',
     component: () => import("@views/activity/MyActivity.vue")
+  },
+  {
+    path: '/activityDetail',
+    name: 'ActivityDetail',
+    component: () => import("@views/activity/ActivityDetail.vue")
   },
   {
     path: '/createHelp',
@@ -72,24 +82,44 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@views/help/MyHelp.vue")
   },
   {
+    path: '/helpDetail',
+    name: 'HelpDetail',
+    component: () => import("@views/help/HelpDetail.vue")
+  },
+  {
     path: '/alumni',
-    name: '/Alumni',
+    name: 'Alumni',
     component: () => import("@views/alumni/Alumni.vue")
   },
   {
     path: '/donation',
-    name: '/Donation',
+    name: 'Donation',
     component: () => import("@views/donation/Donation.vue"),
   },
   {
     path: '/donation/detail',
-    name: '/DonationDetail',
+    name: 'DonationDetail',
     component: () => import("@views/donation/DonationDetail.vue"),
   },
   {
     path: '/myDonation',
-    name: '/MyDonation',
+    name: 'MyDonation',
     component: () => import("@views/donation/MyDonation.vue"),
+  },
+  {
+    path: '/backSchool',
+    name: 'BackSchool',
+    component: () => import("@views/service/BackSchool.vue"),
+  },
+  {
+    path: '/certificate/:type',
+    name: 'Certificate',
+    component: () => import("@views/service/Certificate.vue"),
+  },
+  {
+    path: '/letter',
+    name: 'Letter',
+    component: () => import("@views/me/Letter.vue")
   },
 
   // 静态
