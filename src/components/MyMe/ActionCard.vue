@@ -9,15 +9,15 @@ import { Cell, CellGroup } from 'vant';
     </CellGroup>
 
     <CellGroup inset class="vCard">
-      <Cell icon="envelop-o" title="我的名片" size="large" is-link />
-      <Cell icon="envelop-o" title="校友名片" size="large" is-link />
+      <Cell icon="envelop-o" title="校友申请" size="large" is-link to="/applyCard"/>
+      <Cell icon="envelop-o" title="校友名片" size="large" is-link to="/alumniCard"/>
     </CellGroup>
 
     <CellGroup inset class="actions">
-      <Cell icon="info-o" title="修改资料" size="large" is-link />
-      <Cell icon="info-o" title="联系母校" size="large" is-link />
-      <Cell icon="info-o" title="关于母校" size="large" is-link />
-      <Cell icon="info-o" title="意见反馈" size="large" is-link />
+      <Cell icon="info-o" title="修改资料" size="large" is-link to="/info"/>
+      <Cell icon="info-o" title="联系母校" size="large" is-link to="/connect"/>
+      <Cell icon="info-o" title="关于母校" size="large" is-link to="/about"/>
+      <Cell icon="info-o" title="意见反馈" size="large" is-link to="/feedback"/>
     </CellGroup>
   </div>
 </template>

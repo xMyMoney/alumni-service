@@ -42,6 +42,11 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@views/notice/Notice.vue")
   },
   {
+    path: '/myInfo',
+    name: 'MyInfo',
+    component: () => import("@views/info/MyInfo.vue")
+  },
+  {
     path: "/noticeDetail",
     name: "NoticeDetail",
     component: () => import("@views/notice/NoticeDetail.vue")
@@ -120,6 +125,36 @@ const routes: RouteRecordRaw[] = [
     path: '/letter',
     name: 'Letter',
     component: () => import("@views/me/Letter.vue")
+  },
+  {
+    path: '/applyCard',
+    name: 'ApplyCard',
+    component: () => import("@views/me/ApplyCard.vue")
+  },
+  {
+    path: '/alumniCard',
+    name: 'AlumniCard',
+    component: () => import("@views/me/AlumniCard.vue")
+  },
+  {
+    path: '/info',
+    name: 'Info',
+    component: () => import("@views/me/Info.vue")
+  },
+  {
+    path: '/connect',
+    name: 'Connect',
+    component: () => import("@views/me/Connect.vue")
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: () => import("@views/me/About.vue")
+  },
+  {
+    path: '/feedback',
+    name: 'Feedback',
+    component: () => import("@views/me/Feedback.vue")
   },
 
   // 静态

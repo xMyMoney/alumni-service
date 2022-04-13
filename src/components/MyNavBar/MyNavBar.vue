@@ -5,7 +5,7 @@ import {inject} from "vue";
 const comeback = () => {
   history.back()
 }
-const title = inject('navTitle')
+const title = String(inject('navTitle'))
 </script>
 
 <template>

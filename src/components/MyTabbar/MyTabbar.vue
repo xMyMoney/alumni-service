@@ -2,7 +2,8 @@
 import { Tabbar, TabbarItem } from "vant";
 import { ref } from "vue";
 import guat from "../../assets/guat.jpg";
-const active = ref(2);
+import active from "../../store/layout"
+// const active = ref(2);
 </script>
 
 <template>

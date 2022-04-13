@@ -5,7 +5,7 @@
 <!--//-->
 <!--// const adapter = async () => (await fetchBlog()).data.data;-->
 <!--//-->
-<!--// const [request, response] = useXhr(adapter, [], true);-->
+<!--// const [requestor, response] = useXhr(adapter, [], true);-->
 <!--//-->
 <!--// // 异步返回数据用响应式保存-->
 <!--// // 直接在这里面 console.log(response) 看不到-->

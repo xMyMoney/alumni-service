@@ -17,26 +17,11 @@ const myActivity = inject("myActivity");
           />
           <span class="title">一起回母校吧！！！</span>
         </div>
-
-
-
-        <!--        <div class="info">-->
-        <!--          <Icon name="edit"/>-->
-        <!--          <Image-->
-        <!--              round-->
-        <!--              width="1rem"-->
-        <!--              height="1rem"-->
-        <!--              src="https://img.yzcdn.cn/vant/cat.jpeg"-->
-        <!--          />-->
-        <!--          <span>朱学长 软件工程2018届</span>-->
-        <!--        </div>-->
         <div class="left">
           <div>
             <Tag type="danger" style="margin-right: 0.05rem">已结束</Tag>
             <Tag type="primary">校友聚会</Tag>
           </div>
-
-
           <div>
             <Icon name="clock-o" />
             <span>2020-1-1 9:00</span>
@@ -56,7 +41,6 @@ const myActivity = inject("myActivity");
 
       </div>
     </div>
-
     <template #right v-if="myActivity">
       <Button square text="删除" type="danger" class="delete-bottom" />
     </template>

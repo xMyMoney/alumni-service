@@ -52,7 +52,7 @@ const router = useRouter();
                 </GridItem>
                 <GridItem>
                     <span>11</span>
-                    <span style="color: grey;">通知</span>
+                    <span style="color: grey;" @click="router.push('/myInfo')">消息</span>
                 </GridItem>
             </Grid>
         </div>

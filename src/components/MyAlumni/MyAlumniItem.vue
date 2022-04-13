@@ -1,8 +1,3 @@
-<script setup lang="ts">
-import {Badge,Icon,Image,Button,Toast} from "vant";
-import { inject, ref } from "vue";
-
-</script>
 <template>
     <div class="main">
       <div class="left">
@@ -22,28 +17,79 @@ import { inject, ref } from "vue";
       </div>
 
       <div class="right">
-        <span class="name">朱伟熹</span>
-        <span class="info">软件工程 广西贺州</span>
+        <span class="name">{{alumni.username}}</span>
+        <span class="info">{{alumni.major}} {{alumni.address}}</span>
         <div class="info">
-          <span class="">2018-2022 本科</span>
+          <span class="">{{alumni.beginYear}}-{{alumni.endYear}} {{educate(alumni.education)}}</span>
           <br/>
-          <span class="">桂航有限公司 董事长</span>
+          <span class="">{{alumni.company}} {{alumni.jor}}</span>
           <br/>
-
         </div>
         <div class="active">
-          <span>10小时前 活跃</span>
-          <Button class="btn" type="success" round size="small" @click="Toast.success('已发送交换请求')">交换名片</Button>
+          <span>{{formatTime(alumni.loginTime)}} 活跃</span>
+
+          <Button v-if="alumni.isFriend" class="btn" type="success" round size="small" @click="copyVx(alumni.phone.toString())">复制微信号</Button>
+
+          <Button v-else class="btn" type="success" round size="small" @click="showPopup">交换名片</Button>
+          <Popup v-model:show="show" position="top" style="height: 20%">
+            <CellGroup inset>
+              <Field
+                  v-model="applyInfo.message"
+                  label="申请留言"
+                  left-icon="smile-o"
+                  placeholder="内容"
+                  style="margin-top: 3rem"
+              >
+                <template #button>
+                  <Button round size="normal" type="primary" @click="applyCard(alumni.id)">申请</Button>
+                </template>
+              </Field>
+            </CellGroup>
+          </Popup>
         </div>
-
       </div>
-
-
     </div>
 
 
 </template>
+<script setup lang="ts">
+import {Badge,Icon,Image,Button,Toast,Popup,CellGroup,Field} from "vant";
+import {computed, inject, ref} from "vue";
+import {Alumni} from "@api/alumni";
+defineProps<{alumni:Alumni,all:number}>()
+import {formatTime} from "@utils/time";
+import { toClipboard } from '@soerenmartius/vue3-clipboard';
+import {applyChange, ApplyInfo} from "@api/alumni-apply";
 
+const educate = (educate:number)=> {
+  let t = '';
+  switch (educate) {
+    case 1: t = '本科';break;
+    case 2: t = '硕士';break;
+    case 3: t = '博士';break;
+    default : t = '专科';
+  }
+  return t;
+}
+
+const copyVx = (phone:string)=> {
+  toClipboard(phone,"copy")
+  Toast.success('复制微信号成功')
+}
+const applyInfo = ref<ApplyInfo>({})
+const show = ref(false);
+const showPopup = () => {
+  show.value = true;
+};
+const applyCard = async (id:number) => {
+  applyInfo.value.alumniId = id;
+  applyInfo.value.applyId = 1;
+  const {msg,code} = (await applyChange(applyInfo.value))
+  if(code == 200) {
+    Toast.success('已发送交换请求')
+  }
+}
+</script>
 
 <style scoped lang="less">
 .main {

@@ -1,6 +1,6 @@
 <template>
   <MyNavBar/>
-  <Form >
+  <Form @submit="">
     <CellGroup inset>
       <Field
 
@@ -29,6 +29,14 @@
 
       <Field
 
+          name="学号"
+          label="学号"
+          placeholder="学号"
+          :rules="[{ required: true, message: '请填写学号' }]"
+      />
+
+      <Field
+
           name="身份证"
           label="身份证"
           placeholder="身份证"
@@ -42,31 +50,21 @@
           :rules="[{ required: true, message: '请填写手机号' }]"
       />
 
-      <Field name="uploader" label="健康码"
-             :rules="[{ required: true, message: '请上传健康码' }]">
-        <template #input>
-          <Uploader  />
-        </template>
-      </Field>
-
       <Field
-          v-model="resultTime"
-          is-link
-          readonly
-          name="calendar"
-          label="返校时间"
-          placeholder="点击选择日期"
-          :rules="[{ required: true, message: '请选择返校时间' }]"
-          @click="showCalendar = true"
+
+          name="邮递地址"
+          label="邮递地址"
+          placeholder="邮递地址"
+          :rules="[{ required: true, message: '请填写邮递地址' }]"
       />
-      <Calendar v-model:show="showCalendar" :show-confirm="false" @confirm="onConfirmTime" />
+
 
       <Field
 
-          name="返校事由"
-          label="返校事由"
-          placeholder="返校事由"
-          :rules="[{ required: true, message: '请填写返校事由' }]"
+          name="申请理由"
+          label="申请理由"
+          placeholder="申请理由"
+          :rules="[{ required: true, message: '请填写申请理由' }]"
       />
 
     </CellGroup>
@@ -83,7 +81,9 @@
 import { Form, Field, CellGroup,Button,Popup,Picker,Uploader,Calendar } from 'vant';
 import {provide, ref} from "vue";
 import MyNavBar from "@components/MyNavBar/MyNavBar.vue";
-provide('navTitle','返校预约')
+import {useRoute, useRouter} from "vue-router";
+const route = useRoute()
+provide('navTitle','修改资料')
 const result = ref('');
 const showPicker = ref(false);
 const columns = ['男', '女'];
@@ -93,12 +93,7 @@ const onConfirm = (value: string) => {
   showPicker.value = false;
 };
 
-const resultTime = ref('');
-const showCalendar = ref(false);
-const onConfirmTime = (date: Date) => {
-  resultTime.value = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
-  showCalendar.value = false;
-};
+
 
 </script>
 

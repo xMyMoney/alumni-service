@@ -66,7 +66,7 @@ const router = useRouter()
     }
   }
 
-  .right {
+  .center {
     //border: 1px solid yellow;
     width: 70%;
     margin-left: 1rem;
