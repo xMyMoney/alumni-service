@@ -1,35 +1,77 @@
 import {useRequestor} from "@utils/requestor/useRequestor";
 
-export interface ApplyInfo {
+export interface BaseApplyInfo {
     id?:number;
     applyId?:number;
-    alumniId?:number;
-    avatar?: string;
-    gender?: number;
-    username?:string;
-    message?:string;
-    status?:number;
+    applyType?:string;
+    applyTime?:string;
+    applyStatus?:number;
+    reply?:string;
 }
 
-export async function applyChange(data:ApplyInfo) {
+export interface BackApply {
+    id?:number;
+    applyId?:number;
+    username?:string;
+    gender?: number;
+    stuId?: string;
+    phone?: string;
+    healthCode?: string;
+    backTime?:Date;
+    reason?:number;
+    status?:number
+    reply?:string;
+}
+
+export interface ProveApply {
+    id?:number;
+    applyId?:number;
+    username?:string;
+    stuId?: string;
+    phone?: string;
+    address?:string;
+    reason?:string;
+    proveType?:number;
+    status?:number;
+    reply?:string;
+    applyDesc?:string;
+}
+
+
+
+export async function backApply(data:BackApply) {
     return useRequestor.request<HttpMessage>({
-        url:"alumni-apply",
+        url:"alumni-apply/back",
         method:"POST",
         data
     })
 }
 
-export async function applyInfoList(alumniId:number) {
-    return useRequestor.request<HttpResponse<ApplyInfo[]>>({
-        url:"alumni-apply/list/"+alumniId,
+export async function backApplyInfo(id:number) {
+    return useRequestor.request<HttpResponse<BackApply>>({
+        url:"alumni-apply/back/one/"+id,
         method:"GET",
     })
 }
 
-export async function handleApply(data:ApplyInfo) {
+export async function proveApply(data:ProveApply) {
     return useRequestor.request<HttpMessage>({
-        url:"alumni-apply/handle",
-        method:"PUT",
+        url:"alumni-apply/prove",
+        method:"POST",
         data
+    })
+}
+
+export async function proveApplyInfo(id:number) {
+    return useRequestor.request<HttpResponse<ProveApply>>({
+        url:"alumni-apply/prove/one/"+id,
+        method:"GET",
+    })
+}
+
+export async function applyRecordList() {
+    return useRequestor.request<HttpResponse<BaseApplyInfo[]>>({
+        url:"apply-record/list/1",
+        method:"GET"
     })
 }

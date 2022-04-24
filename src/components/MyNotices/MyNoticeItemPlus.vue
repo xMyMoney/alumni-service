@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import {useRouter} from "vue-router";
-
+import {Notice} from "@api/notice";
+import {formatActiveTime} from "@utils/time";
 const router = useRouter();
+defineProps<{info:Notice}>()
 </script>
 <template>
-  <div class="noticeItem" @click="router.push('/noticeDetail')">
-    <span class="title">标题标题标题标题标题</span>
+  <div class="noticeItem" @click="router.push('/noticeDetail/'+info.id)">
+    <span class="title">{{info.title}}</span>
     <div>
-      <span class="time">2022年01月01日</span>
-      <span class="read">11人阅读</span>
+      <span class="time">{{formatActiveTime(info.createTime)}}</span>
+      <span class="read">{{info.count}}人阅读</span>
     </div>
   </div>
 </template>

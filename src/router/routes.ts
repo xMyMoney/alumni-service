@@ -3,6 +3,20 @@ import { RouteRecordRaw } from "vue-router";
 import { constRoutes } from "./const-route";
 
 const routes: RouteRecordRaw[] = [
+  // {
+  //   path: "/",
+  //   redirect:'/login'
+  // },
+  {
+    path: "/login",
+    name: "Login",
+    component: () => import("@views/auth/Login.vue")
+  },
+  {
+    path: "/register/:id?",
+    name: "Register",
+    component: () => import("@views/auth/Register.vue")
+  },
   {
     path: "/",
     name: "root",
@@ -20,9 +34,9 @@ const routes: RouteRecordRaw[] = [
         component: () => import("@views/layout/Me.vue"),
       },
       {
-        path: "services",
-        name: "Services",
-        component: () => import("@views/layout/Services.vue"),
+        path: '/alumni',
+        name: 'Alumni',
+        component: () => import("@views/layout/Alumni.vue")
       },
       {
         path: "activity",
@@ -30,10 +44,10 @@ const routes: RouteRecordRaw[] = [
         component: () => import("@views/layout/Activity.vue"),
       },
       {
-        path: "help",
-        name: "Help",
-        component: () => import("@views/layout/Help.vue")
-      }
+        path: '/donation',
+        name: 'Donation',
+        component: () => import("@views/layout/Donation.vue"),
+      },
     ],
   },
   {
@@ -47,7 +61,7 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@views/info/MyInfo.vue")
   },
   {
-    path: "/noticeDetail",
+    path: "/noticeDetail/:id?",
     name: "NoticeDetail",
     component: () => import("@views/notice/NoticeDetail.vue")
   },
@@ -57,7 +71,7 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@views/news/News.vue")
   },
   {
-    path: '/newsDetail',
+    path: '/newsDetail/:id?',
     name: 'NewsDetail',
     component: () => import("@views/news/NewsDetail.vue")
   },
@@ -72,7 +86,7 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@views/activity/MyActivity.vue")
   },
   {
-    path: '/activityDetail',
+    path: '/activityDetail/:id?',
     name: 'ActivityDetail',
     component: () => import("@views/activity/ActivityDetail.vue")
   },
@@ -92,17 +106,12 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@views/help/HelpDetail.vue")
   },
   {
-    path: '/alumni',
-    name: 'Alumni',
-    component: () => import("@views/alumni/Alumni.vue")
+    path: '/donation/apply',
+    name: 'DonationApply',
+    component: () => import("@views/donation/DonationApply.vue"),
   },
   {
-    path: '/donation',
-    name: 'Donation',
-    component: () => import("@views/donation/Donation.vue"),
-  },
-  {
-    path: '/donation/detail',
+    path: '/donation/detail/:id?',
     name: 'DonationDetail',
     component: () => import("@views/donation/DonationDetail.vue"),
   },
@@ -112,14 +121,22 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@views/donation/MyDonation.vue"),
   },
   {
-    path: '/backSchool',
+    path: '/backSchool/:id?',
     name: 'BackSchool',
     component: () => import("@views/service/BackSchool.vue"),
   },
   {
-    path: '/certificate/:type',
-    name: 'Certificate',
-    component: () => import("@views/service/Certificate.vue"),
+    path: '/degreeCertificate/:id?',
+    name: 'DegreeCertificate',
+    component: () => import("@views/service/DegreeCertificate.vue"),
+  },
+  {
+    path: '/graduationCertificate/:id?',
+    name: 'GraduationCertificate',
+    component: () => import("@views/service/GraduationCertificate.vue"),
+    meta: {
+
+    }
   },
   {
     path: '/letter',

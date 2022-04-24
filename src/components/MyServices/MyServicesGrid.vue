@@ -9,10 +9,12 @@ const router = useRouter();
       <h4>基本功能</h4>
       <Grid :border="false" :gutter="15" column-num="3" icon-size="30px">
         <GridItem icon="photo-o" text="返校预约" @click="router.push('/backSchool')"/>
-        <GridItem icon="photo-o" text="毕业证明" @click="router.push('/certificate/'+0)"/>
-        <GridItem icon="photo-o" text="学位证明" @click="router.push('/certificate/'+1)"/>
-        <GridItem icon="photo-o" text="校友卡申领"/>
+        <GridItem icon="photo-o" text="毕业证明" @click="router.push('/graduationCertificate/')"/>
+        <GridItem icon="photo-o" text="学位证明" @click="router.push('/degreeCertificate/')"/>
+        <GridItem icon="refund-o" text="申请捐赠" @click="router.push('/donation/apply')"/>
         <GridItem icon="refund-o" text="回馈母校" />
+        <GridItem icon="photo-o" text="校友卡申领"/>
+
       </Grid>
     </div>
     <div class="more">
@@ -21,8 +23,9 @@ const router = useRouter();
         <GridItem icon="photo-o" text="返校预约" />
         <GridItem icon="photo-o" text="毕业证明" />
         <GridItem icon="photo-o" text="学位证明" />
-        <GridItem icon="photo-o" text="校友卡申领"/>
         <GridItem icon="refund-o" text="回馈母校" />
+        <GridItem icon="photo-o" text="校友卡申领"/>
+
       </Grid>
     </div>
   </div>

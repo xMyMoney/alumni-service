@@ -5,8 +5,12 @@ const comeback = () => {
 }
 import { ref } from 'vue';
 import MyNewsItemPlus from "@components/MyNews/MyNewsItemPlus.vue";
+import {getList} from "@api/news";
+import {useXhr} from "@hooks/useXhr";
 
 const value = ref('');
+const adapter = async ()=>(await getList()).data
+const [request, response,loading] = useXhr(adapter,[],true)
 </script>
 
 <template>
@@ -19,9 +23,9 @@ const value = ref('');
         @click-left="comeback"
     />
     <Search class="search" v-model="value" shape="round" placeholder="请输入搜索关键词"/>
-    <MyNewsItemPlus/>
-    <MyNewsItemPlus/>
-    <MyNewsItemPlus/>
+    <MyNewsItemPlus
+        v-for="item in response"
+        :info="item"/>
   </div>
 </template>
 <style scoped lang="less">

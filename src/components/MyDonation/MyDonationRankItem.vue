@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import {Badge,Icon,Image,Button,Toast} from "vant";
 import { inject, ref } from "vue";
-
+import {DonationRank} from "@api/donation";
+defineProps<{info:DonationRank}>()
 </script>
 <template>
   <div class="main">
@@ -10,11 +11,11 @@ import { inject, ref } from "vue";
         round
         width="2rem"
         height="2rem"
-        src="https://img.yzcdn.cn/vant/cat.jpeg"
+        :src="info.avatar"
     />
-    <span class="user">朱伟熹</span>
-    <span class="cash">捐赠1.00元</span>
-    <span class="time">2022-01-01 9:00</span>
+    <span class="user">{{info.alumni}}</span>
+    <span class="cash">{{info.count}}元</span>
+    <span class="time">{{info.time}}</span>
 
   </div>
 

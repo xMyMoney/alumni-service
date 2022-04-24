@@ -2,18 +2,28 @@
 import {Image,Circle,Tab,Tabs,ActionBar, ActionBarIcon, ActionBarButton} from "vant";
 import {computed, provide, ref} from "vue";
 import MyNavBar from "@components/MyNavBar/MyNavBar.vue";
+import {useRoute} from "vue-router";
+import {getOne, Notice} from "@api/notice";
+import {formatActiveTime} from "@utils/time";
 provide('navTitle','详情')
-
+const route = useRoute()
+const id = route.params.id as unknown as number
+const info = ref<Notice>({})
+const fetchNotice = async ()=> {
+  const {data} = await getOne(id)
+  info.value = data
+}
+fetchNotice()
 </script>
 <template>
   <MyNavBar/>
   <div class="main">
     <div class="top">
-      <h3>校友倡议书</h3>
-      <span class="time">2022-01-01</span>
+      <h3>{{info.title}}</h3>
+      <span class="time">{{formatActiveTime(info.createTime)}}</span>
       <span class="origin">来源: 桂林航天工业学院</span>
     </div>
-    <div>富文本显示内容</div>
+    <div>{{info.content}}</div>
     <div class="bottom">
       <div></div>
     </div>

@@ -1,4 +1,4 @@
 import {ref} from "vue";
 
-const active = ref(0)
+const active = ref(2)
 export default active

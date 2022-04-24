@@ -1,8 +1,36 @@
 <script setup lang="ts">
-import {Image,Grid, GridItem,Icon,ActionBar, ActionBarButton} from "vant";
+import {Image,Grid, GridItem,Icon,ActionBar, ActionBarButton,Dialog ,Tag,Toast} from "vant";
 import MyNavBar from "@components/MyNavBar/MyNavBar.vue";
-import {provide} from "vue";
+import {provide, ref} from "vue";
+import {useRoute} from "vue-router";
+import {Activity, getOne, joinActivity} from "@api/activity";
+import {useStore} from "../../store/user-info";
+const userStore = useStore()
 provide('navTitle','详情')
+const route = useRoute()
+const id = route.params.id as unknown as number
+const info = ref<Activity>({})
+const fetchActivity = async ()=> {
+  const {data} = await getOne(id,userStore.id as number);
+  info.value = data;
+}
+fetchActivity()
+const showDialog =  ()=> {
+  Dialog.confirm({
+    title: '参加活动',
+    message:
+        '是否报名参加活动',
+  })
+      .then(async () => {
+        const {code,msg} = await joinActivity(info.value?.id,userStore.id as number);
+        Toast.success("报名成功")
+        await fetchActivity()
+      })
+      .catch(() => {
+        // on cancel
+      });
+
+}
 </script>
 <template>
   <div class="main">
@@ -13,36 +41,41 @@ provide('navTitle','详情')
         src="https://pig-blog.oss-cn-guangzhou.aliyuncs.com/blog-file/img/1638857103861.jpg"
     />
     <div class="info">
-      <h3>一起回母校！！！</h3>
+      <h3>{{info.title}}</h3>
       <div class="comInfo">
         <Grid :column-num="3" :border="false">
           <GridItem>
-              <span><Icon name="chat-o" />范围</span>
-            <div>全体校友</div>
+              <span><Icon name="chat-o" />状态</span>
+            <div>
+              <Tag v-if="info.status === 0" type="primary">未开始</Tag>
+              <Tag v-else-if="info.status === 1" type="success">进行中</Tag>
+              <Tag v-else type="danger">已结束</Tag>
+            </div>
           </GridItem>
           <GridItem>
             <span><Icon name="chat-o" />名额</span>
-            <div>11/12</div>
+            <div>{{info.quota}}</div>
           </GridItem>
           <GridItem>
-            <span><Icon name="chat-o" />费用</span>
-            <div>免费</div>
+            <span><Icon name="chat-o" />已报名</span>
+            <div>{{info.joinCount}}</div>
           </GridItem>
         </Grid>
       </div>
       <div class="impInfo">
-        <div>时间:2022-2021</div>
-        <div>地点:广西贺州</div>
+        <div>开始:{{info.beginTime}}</div>
+        <div>结束:{{info.endTime}}</div>
+        <div>地点:{{info.place}}</div>
       </div>
       <div class="detail">
         <h3>活动内容</h3>
-        <div>富文本显示</div>
+        <div>{{info.content}}</div>
       </div>
     </div>
     <ActionBar>
-      <!--      <ActionBarIcon icon="chat-o" text="主页" @click="onClickIcon" />-->
-<!--      <ActionBarButton disabled type="primary" text="物品捐赠" @click="" />-->
-      <ActionBarButton type="success" text="立即报名" @click="" />
+      <ActionBarButton v-if="info.join" disabled  type="success" text="已报名" @click="showDialog" />
+      <ActionBarButton v-else-if="info.status === 2 || info.status === 0" disabled  type="success" text="立即报名" @click="showDialog" />
+      <ActionBarButton v-else  type="success" text="立即报名" @click="showDialog" />
     </ActionBar>
 
   </div>

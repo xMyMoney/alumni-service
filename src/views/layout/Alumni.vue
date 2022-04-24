@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {NavBar,Search,DropdownMenu, DropdownItem} from "vant";
+import {NavBar,Search,Tab, Tabs,DropdownMenu, DropdownItem} from "vant";
 const comeback = () => {
   history.back()
 }
@@ -35,9 +35,6 @@ watch(alumniParam.value,request);
   <NavBar
       class="nav"
       title="寻找校友"
-      left-text="返回"
-      left-arrow
-      @click-left="comeback"
   />
   <Search class="search"
           show-action

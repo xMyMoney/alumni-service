@@ -3,26 +3,27 @@ import {Icon} from "vant";
 
 import {useRouter} from "vue-router";
 import MyNewsItem from "@components/MyNews/MyNewsItem.vue";
+import {getList} from "@api/news";
+import {useXhr} from "@hooks/useXhr";
 const router = useRouter()
 const toAllNews = () => {
   router.push('/news')
 }
-
+const adapter = async ()=>(await getList()).data
+const [request, response,loading] = useXhr(adapter,[],true)
 </script>
 <template>
   <div class="main">
     <span class="left">母校新闻</span>
     <span class="right" @click="toAllNews">
-    11
+    {{response.length}}
     <Icon
         name="arrow"
     />
   </span>
-    <MyNewsItem/>
-    <MyNewsItem/>
-    <MyNewsItem/>
-    <MyNewsItem/>
-
+    <MyNewsItem
+        v-for="item in response.slice(0,3)"
+        :info="item"/>
   </div>
 </template>
 

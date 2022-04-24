@@ -1,16 +1,16 @@
 // import { UserAllInfo, UserConfig } from "./constant";
 import { useRequestor } from "./requestor/useRequestor";
 
-export function getStorage(key: string): string {
-  return localStorage.getItem(key) || "";
+export function getToken(){
+  return localStorage.getItem('token') || "";
 }
 
-export function setStorage(key: string, value: string): void {
-  localStorage.setItem(key, value);
+export function setToken(value: string): void {
+  localStorage.setItem('token', value);
 }
 
-export function removeStorage(key: string): void {
-  localStorage.removeItem(key);
+export function removeToken(): void {
+  localStorage.removeItem('token');
 }
 
 // export async function checkUser() {

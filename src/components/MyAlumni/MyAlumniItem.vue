@@ -18,17 +18,19 @@
 
       <div class="right">
         <span class="name">{{alumni.username}}</span>
-        <span class="info">{{alumni.major}} {{alumni.address}}</span>
+        <Rate size="small" v-model="alumni.star" color="#ffd21e"/>
+
         <div class="info">
-          <span class="">{{alumni.beginYear}}-{{alumni.endYear}} {{educate(alumni.education)}}</span>
+          <span class="info"> </span>
+          <span class="">{{alumni.beginYear}}-{{alumni.endYear}} {{educate(alumni.education)}} {{alumni.major}}</span>
           <br/>
-          <span class="">{{alumni.company}} {{alumni.jor}}</span>
+          <span class="">{{alumni.address}} {{alumni.company}} {{alumni.jor}}</span>
           <br/>
         </div>
         <div class="active">
-          <span>{{formatTime(alumni.loginTime)}} 活跃</span>
+          <span>{{formatActiveTime(alumni.loginTime)}} 活跃</span>
 
-          <Button v-if="alumni.isFriend" class="btn" type="success" round size="small" @click="copyVx(alumni.phone.toString())">复制微信号</Button>
+          <Button v-if="alumni.isFriend" class="btn" type="success" round size="small" @click="copyVx(alumni.phone.toString())">复制手机号</Button>
 
           <Button v-else class="btn" type="success" round size="small" @click="showPopup">交换名片</Button>
           <Popup v-model:show="show" position="top" style="height: 20%">
@@ -53,14 +55,15 @@
 
 </template>
 <script setup lang="ts">
-import {Badge,Icon,Image,Button,Toast,Popup,CellGroup,Field} from "vant";
+import {Badge,Icon,Image,Button,Toast,Popup,CellGroup,Field,Rate} from "vant";
 import {computed, inject, ref} from "vue";
 import {Alumni} from "@api/alumni";
 defineProps<{alumni:Alumni,all:number}>()
-import {formatTime} from "@utils/time";
+import {formatActiveTime} from "@utils/time";
 import { toClipboard } from '@soerenmartius/vue3-clipboard';
-import {applyChange, ApplyInfo} from "@api/alumni-apply";
-
+import {applyChange, ApplyInfo} from "@api/friend-apply";
+import {useStore} from "../../store/user-info";
+const userStore = useStore()
 const educate = (educate:number)=> {
   let t = '';
   switch (educate) {
@@ -74,7 +77,7 @@ const educate = (educate:number)=> {
 
 const copyVx = (phone:string)=> {
   toClipboard(phone,"copy")
-  Toast.success('复制微信号成功')
+  Toast.success('复制手机号成功')
 }
 const applyInfo = ref<ApplyInfo>({})
 const show = ref(false);
@@ -83,7 +86,7 @@ const showPopup = () => {
 };
 const applyCard = async (id:number) => {
   applyInfo.value.alumniId = id;
-  applyInfo.value.applyId = 1;
+  applyInfo.value.applyId = userStore.id;
   const {msg,code} = (await applyChange(applyInfo.value))
   if(code == 200) {
     Toast.success('已发送交换请求')

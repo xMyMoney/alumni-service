@@ -18,8 +18,9 @@ import {provide, ref} from "vue";
 import {Alumni, getMyAlumniList} from "@api/alumni";
 import {useXhr} from "@hooks/useXhr";
 provide('navTitle','校友名片')
-
-const adapter = async ()=> (await getMyAlumniList(1)).data;
+import {useStore} from "../../store/user-info";
+const userStore = useStore()
+const adapter = async ()=> (await getMyAlumniList(userStore.id as number)).data;
 const [request, response, loading] = useXhr(adapter, [],true);
 // const {loading,response:data} = useRequest<Alumni[]>(async ()=> (await getAlumniList(1)),[]);
 

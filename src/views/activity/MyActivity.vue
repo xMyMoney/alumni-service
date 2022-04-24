@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import { Search } from 'vant';
-import {provide, ref} from "vue";
+import {onMounted, provide, ref} from "vue";
 import MyActivityItem from "@components/MyActivity/MyActivityItem.vue";
 import {useRouter} from "vue-router";
 import MyNavBar from "@components/MyNavBar/MyNavBar.vue";
+import {useXhr} from "@hooks/useXhr";
+import {getJoined} from "@api/activity";
 const value = ref('');
 provide("myActivity",1)
 provide('navTitle','我的活动')
+import {useStore} from "../../store/user-info";
+const userStore = useStore()
 const router = useRouter();
+const adapter = async ()=>(await getJoined(userStore.id as number)).data
+const [request, response,loading] = useXhr(adapter,[],true)
 </script>
 <template>
   <MyNavBar/>
@@ -20,10 +26,9 @@ const router = useRouter();
       <div @click="router.push('/createActivity')">发起</div>
     </template>
   </Search>
-  <MyActivityItem/>
-  <MyActivityItem/>
-  <MyActivityItem/>
-  <MyActivityItem/>
+  <MyActivityItem
+  v-for="item in response"
+  :info="item"/>
 </template>
 
 <style scoped>

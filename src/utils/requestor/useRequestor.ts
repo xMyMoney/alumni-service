@@ -1,6 +1,6 @@
 import { ContentType, RequestInterfaceAddress } from "./useAxiosEnums";
 import { AxiosTransform } from "./useAxiosTransform";
-import { getStorage } from "../auth";
+import { getToken } from "../auth";
 import { CustomAxios } from "./useAxios";
 
 const transform: AxiosTransform = {
@@ -22,7 +22,7 @@ const transform: AxiosTransform = {
   //   请求拦截器
   //   设置token
   requestInerceptor(config) {
-    const AccessToken = getStorage("token");
+    const AccessToken = getToken();
     if (!AccessToken) {
       // 没有token的处理
     } else {
@@ -53,4 +53,4 @@ function createAxios(baseURL: RequestInterfaceAddress) {
   });
 }
 
-export const useRequestor = createAxios(RequestInterfaceAddress.BLOG);
+export const useRequestor = createAxios(RequestInterfaceAddress.ALUMNI);

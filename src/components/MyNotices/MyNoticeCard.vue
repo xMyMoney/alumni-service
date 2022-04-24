@@ -4,25 +4,28 @@ const router = useRouter()
 
 import {Icon} from "vant";
 import MyNoticeItem from "@components/MyNotices/MyNoticeItem.vue";
+import {getList} from "@api/notice";
+import {useXhr} from "@hooks/useXhr";
 
 const toAllNotice = () => {
   router.push('/notice')
   // router.push('/me')
 }
+const adapter = async ()=>(await getList()).data
+const [request, response,loading] = useXhr(adapter,[],true)
 </script>
 <template>
 <div class="main">
     <span class="left">通知公告</span>
     <span class="right" @click="toAllNotice">
-    11
+    {{response.length}}
     <Icon
         name="arrow"
     />
   </span>
-  <MyNoticeItem/>
-  <MyNoticeItem/>
-  <MyNoticeItem/>
-
+  <MyNoticeItem
+  v-for="item in response.slice(0,3)"
+  :info="item"/>
 </div>
 </template>
 

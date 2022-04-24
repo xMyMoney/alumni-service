@@ -2,18 +2,23 @@
 import {Image,Circle,Tab,Tabs,ActionBar, ActionBarIcon, ActionBarButton} from "vant";
 import {computed, provide, ref} from "vue";
 import MyNavBar from "@components/MyNavBar/MyNavBar.vue";
-provide('navTitle','致校友的一封信')
+import {useXhr} from "@hooks/useXhr";
+import {getStaticPage} from "@api/static-page";
+import {formatActiveTime} from "@utils/time";
 
+provide('navTitle','致校友的一封信')
+const adapter = async ()=>(await getStaticPage(0)).data
+const [request, response,loading] = useXhr(adapter,{},true)
 </script>
 <template>
   <MyNavBar/>
   <div class="main">
     <div class="top">
       <h3>致校友的一封信</h3>
-      <span class="time">2022-01-01</span>
+      <span class="time">{{formatActiveTime(response.createTime)}}</span>
       <span class="origin">来源: 桂林航天工业学院</span>
     </div>
-    <div>富文本显示内容</div>
+    <div>{{response.content}}</div>
     <div class="bottom">
       <div></div>
     </div>

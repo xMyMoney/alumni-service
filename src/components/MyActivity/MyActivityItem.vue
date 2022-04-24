@@ -2,37 +2,41 @@
 import { Icon, Image, Tag, SwipeCell, Button } from "vant";
 import {inject, provide, ref} from "vue";
 import {useRouter} from "vue-router";
+import {Activity} from "@api/activity";
 const router = useRouter()
 const myActivity = inject("myActivity");
+defineProps<{info:Activity}>()
 </script>
 <template>
   <SwipeCell>
     <div class="main">
       <div class="container">
-        <div class="cover" @click="router.push('/activityDetail')">
+        <div class="cover" @click="router.push('/activityDetail/'+info.id)">
           <Image
               radius="0.5rem"
               fit="contain"
               src="https://pig-blog.oss-cn-guangzhou.aliyuncs.com/blog-file/img/1638857103861.jpg"
           />
-          <span class="title">一起回母校吧！！！</span>
+          <span class="title">{{info.title}}</span>
         </div>
         <div class="left">
           <div>
-            <Tag type="danger" style="margin-right: 0.05rem">已结束</Tag>
-            <Tag type="primary">校友聚会</Tag>
+<!--            <Tag style="margin-right: 0.05rem" v-if="info.status === 0" type="primary">未开始</Tag>-->
+<!--            <Tag style="margin-right: 0.05rem" v-else-if="info.status === 1" type="success">进行中</Tag>-->
+<!--            <Tag style="margin-right: 0.05rem" v-else type="danger">已结束</Tag>-->
+            <Tag type="primary">{{info.category}}</Tag>
           </div>
           <div>
             <Icon name="clock-o" />
-            <span>2020-1-1 9:00</span>
+            <span>{{info.beginTime}}</span>
           </div>
           <div>
             <Icon name="location-o" />
-            <span>广西贺州</span>
+            <span>{{info.place}}</span>
           </div>
           <div>
             <Icon name="friends-o" />
-            <span>11人报名</span>
+            <span>{{info.joinCount}}人报名</span>
           </div>
         </div>
         <div class="right">

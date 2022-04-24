@@ -8,7 +8,7 @@ import active from "../../store/layout"
 
 <template>
   <Tabbar class="tab-bar" v-model="active">
-    <TabbarItem icon="friends-o" to="/help">互助</TabbarItem>
+    <TabbarItem icon="smile-o" to="/donation">捐赠</TabbarItem>
     <TabbarItem icon="flag-o" to="/activity">活动</TabbarItem>
     <TabbarItem to="/home">
       <div class="main">
@@ -16,7 +16,7 @@ import active from "../../store/layout"
         <div class="txt">主页大厅</div>
       </div>
     </TabbarItem>
-    <TabbarItem icon="smile-o" to="/services">服务</TabbarItem>
+    <TabbarItem icon="friends-o" to="/alumni">校友</TabbarItem>
     <TabbarItem icon="user-o" to="/me">我的</TabbarItem>
   </Tabbar>
 </template>

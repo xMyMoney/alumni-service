@@ -3,7 +3,7 @@
   <Form @submit="">
     <CellGroup inset>
       <Field
-
+          v-model="alumni.username"
           name="姓名"
           label="姓名"
           placeholder="姓名"
@@ -28,22 +28,7 @@
       </Popup>
 
       <Field
-
-          name="学号"
-          label="学号"
-          placeholder="学号"
-          :rules="[{ required: true, message: '请填写学号' }]"
-      />
-
-      <Field
-
-          name="身份证"
-          label="身份证"
-          placeholder="身份证"
-          :rules="[{ required: true, message: '请填写身份证' }]"
-      />
-      <Field
-
+          v-model="alumni.phone"
           name="手机号"
           label="手机号"
           placeholder="手机号"
@@ -51,7 +36,7 @@
       />
 
       <Field
-
+          v-model="alumni.address"
           name="邮递地址"
           label="邮递地址"
           placeholder="邮递地址"
@@ -84,6 +69,11 @@ import MyNavBar from "@components/MyNavBar/MyNavBar.vue";
 import {useRoute, useRouter} from "vue-router";
 const route = useRoute()
 provide('navTitle','修改资料')
+import {useStore} from "../../store/user-info";
+import {Alumni} from "@api/alumni";
+const userStore = useStore()
+const alumni = ref<Alumni>({})
+alumni.value = userStore
 const result = ref('');
 const showPicker = ref(false);
 const columns = ['男', '女'];

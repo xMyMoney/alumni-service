@@ -2,26 +2,15 @@
 import {Icon, Image, Tag, SwipeCell, Button, Badge, Toast} from "vant";
 import {inject, provide, ref} from "vue";
 import {useRouter} from "vue-router";
-import {ApplyInfo, handleApply} from "@api/alumni-apply";
+import {ApplyInfo, handleApply} from "@api/friend-apply";
 import {useXhr} from "@hooks/useXhr";
 const router = useRouter()
 const myActivity = inject("myActivity");
 defineProps<{applyInfo:ApplyInfo}>()
-const agree = async(applyId:number)=>{
-  const {msg,code} = await handleApply({applyId:applyId,alumniId:1,status:1})
-  if(code == 0) {
-    Toast.success('已同意')
-  }
-}
-
-const refuse = async (applyId:number)=>{
-  const {msg,code} = await handleApply({applyId:applyId,alumniId:1,status:2})
-  if(code == 0) {
-    Toast.success('已拒绝')
-  }
-}
+import {useStore} from "../../store/user-info";
+const userStore = useStore()
 const handle = async (applyId:number,status:number)=> {
-  const {msg,code} = await handleApply({applyId:applyId,alumniId:1,status:status})
+  const {msg,code} = await handleApply({applyId:applyId,alumniId:userStore.id,status:status})
   if(code == 0) {
     if (status == 1) {
       Toast.success('已同意')

@@ -1,4 +1,4 @@
-export function formatTime(time: Date) {
+export function formatActiveTime(time: Date) {
   const date:Date = new Date(time)
   const now = Date.now()
 
@@ -26,4 +26,9 @@ export function formatTime(time: Date) {
   m = m < 10 ? "0" + m : m;
   let s = date.getSeconds();
   return y + "-" + MM + "-" + d + " " + h + ":" + m;
+}
+
+export function formatInfoTime(time:Date) {
+  const date:Date = new Date(time)
+  return date.getFullYear()+'-'+date.getMonth()+'-'+date.getDay()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getMinutes()
 }

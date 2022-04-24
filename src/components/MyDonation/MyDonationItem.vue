@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import {Badge,Icon,Image,Button,Toast} from "vant";
+import {Badge,Icon,Image,Button,Toast,Tag } from "vant";
 import {useRouter} from "vue-router";
+import {Donation} from "@api/donation";
 const router = useRouter()
-
+defineProps<{info:Donation}>()
 </script>
 <template>
-  <div class="main" @click="router.push('/donation/detail')">
+  <div class="main" @click="router.push('/donation/detail/'+info.id)">
     <div class="left">
-
         <Image
             class="avatar"
             fit="contain"
@@ -19,19 +19,21 @@ const router = useRouter()
     </div>
 
     <div class="right">
-      <span class="name">天八翻新</span>
+      <span class="name">{{info.title}}</span>
 
       <div class="info">
         <span class="">
-          2018年投入使用，已经过去四年需要翻新捞钱
-          懂了吗
+          {{info.content.slice(0,5)}}...
         </span>
       </div>
       <div class="count">
-        <span style="color: #ed6a0c">1000</span>
+        <span style="color: #ed6a0c">{{info.donatedCount}}</span>
         <span style="margin-left: 0.2rem">人已捐</span>
-      </div>
+        <Tag class="tag" v-if="info.status === 0" type="primary">未开始</Tag>
+        <Tag class="tag" v-else-if="info.status === 1" type="success">进行中</Tag>
+        <Tag class="tag" v-else type="danger">已结束</Tag>
 
+      </div>
     </div>
 
 
@@ -66,15 +68,10 @@ const router = useRouter()
     }
   }
 
-  .center {
+  .right {
     //border: 1px solid yellow;
     width: 70%;
     margin-left: 1rem;
-
-    .name {
-      font-size: medium;
-      margin-right: 1rem;
-    }
     .info,.count{
       font-size: x-small;
       color: gray;
@@ -84,7 +81,9 @@ const router = useRouter()
     }
     .count {
       margin-top: 0.3rem;
-      //border: 1px solid red;
+      .tag {
+        margin-left: 7rem;
+      }
     }
   }
 }

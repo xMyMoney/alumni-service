@@ -1,11 +1,19 @@
 <script setup lang="ts">
 import { Grid, GridItem, Image, Swipe, SwipeItem } from "vant";
 import {useRouter} from "vue-router";
+import {getSlideshow} from "@api/static-page";
+import {ref} from "vue";
 const images = [
   "https://pig-blog.oss-cn-guangzhou.aliyuncs.com/blog-file/img/1638857103861.jpg",
   "https://pig-blog.oss-cn-guangzhou.aliyuncs.com/blog-file/img/1638857103861.jpg",
 ];
-const router = useRouter();
+// const images = ref<string[]>()
+// const router = useRouter();
+// const fetchImg = async ()=>{
+//   const {data} = await getSlideshow()
+//   images.value = data
+// }
+// fetchImg()
 </script>
 <template>
   <div class="main">
@@ -30,10 +38,12 @@ const router = useRouter();
     </div>
     <div class="service">
       <Grid :border="false" :gutter="20" column-num="4" icon-size="25px" class="grid">
-        <GridItem icon="photo-o" text="找校友" @click="router.push('/alumni')"/>
-        <GridItem icon="photo-o" text="找活动" @click="router.push('/activity')"/>
-        <GridItem icon="photo-o" text="找互助" @click="router.push('/help')"/>
-        <GridItem icon="photo-o" text="回馈母校" @click="router.push('/donation')"/>
+
+        <GridItem icon="manager-o" text="毕业证明" @click="router.push('/graduationCertificate/')"/>
+        <GridItem icon="todo-list-o" text="返校预约" @click="router.push('/backSchool')"/>
+        <GridItem icon="balance-list-o" text="捐赠申请" @click="router.push('/donation/apply')"/>
+        <GridItem icon="manager-o" text="学位证明" @click="router.push('/degreeCertificate/')"/>
+
       </Grid>
     </div>
   </div>
