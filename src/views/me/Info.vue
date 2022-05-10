@@ -44,13 +44,13 @@
       />
 
 
-      <Field
+<!--      <Field-->
 
-          name="申请理由"
-          label="申请理由"
-          placeholder="申请理由"
-          :rules="[{ required: true, message: '请填写申请理由' }]"
-      />
+<!--          name="申请理由"-->
+<!--          label="申请理由"-->
+<!--          placeholder="申请理由"-->
+<!--          :rules="[{ required: true, message: '请填写申请理由' }]"-->
+<!--      />-->
 
     </CellGroup>
 
@@ -69,11 +69,14 @@ import MyNavBar from "@components/MyNavBar/MyNavBar.vue";
 import {useRoute, useRouter} from "vue-router";
 const route = useRoute()
 provide('navTitle','修改资料')
-import {useStore} from "../../store/user-info";
-import {Alumni} from "@api/alumni";
-const userStore = useStore()
+import {Alumni, getUserInfo} from "@api/alumni";
 const alumni = ref<Alumni>({})
-alumni.value = userStore
+import {getUserId} from "@utils/auth";
+const fetchUserInfo = async ()=> {
+  const {data} = await getUserInfo()
+  alumni.value = data
+}
+fetchUserInfo()
 const result = ref('');
 const showPicker = ref(false);
 const columns = ['男', '女'];
@@ -82,7 +85,6 @@ const onConfirm = (value: string) => {
   result.value = value;
   showPicker.value = false;
 };
-
 
 
 </script>

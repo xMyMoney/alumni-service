@@ -1,5 +1,6 @@
 // import { UserAllInfo, UserConfig } from "./constant";
 import { useRequestor } from "./requestor/useRequestor";
+import {Alumni} from "@api/alumni";
 
 export function getToken(){
   return localStorage.getItem('token') || "";
@@ -12,6 +13,22 @@ export function setToken(value: string): void {
 export function removeToken(): void {
   localStorage.removeItem('token');
 }
+
+export function getUserId(){
+  return localStorage.getItem('userId') || "";
+}
+
+export function setUserId(value: string): void {
+  localStorage.setItem('userId', value);
+}
+
+export function removeUserId(): void {
+  localStorage.removeItem('userId');
+
+}
+
+
+
 
 // export async function checkUser() {
 //   return useRequestor.requestor<HttpResponse<UserAllInfo>>({

@@ -4,13 +4,12 @@ import {inject, provide, ref} from "vue";
 import {useRouter} from "vue-router";
 import {ApplyInfo, handleApply} from "@api/friend-apply";
 import {useXhr} from "@hooks/useXhr";
+import {getUserId} from "@utils/auth";
 const router = useRouter()
 const myActivity = inject("myActivity");
 defineProps<{applyInfo:ApplyInfo}>()
-import {useStore} from "../../store/user-info";
-const userStore = useStore()
 const handle = async (applyId:number,status:number)=> {
-  const {msg,code} = await handleApply({applyId:applyId,alumniId:userStore.id,status:status})
+  const {msg,code} = await handleApply({applyId:applyId,alumniId:getUserId() as unknown as number,status:status})
   if(code == 0) {
     if (status == 1) {
       Toast.success('已同意')
@@ -25,18 +24,12 @@ const handle = async (applyId:number,status:number)=> {
 
     <div class="main">
       <div class="left">
-        <Badge>
-          <Image
-              class="avatar"
-              round
-              width="4rem"
-              height="4rem"
-              src="https://img.yzcdn.cn/vant/cat.jpeg"
-          />
-          <template #content>
-            <Icon name="cross" class="badge-icon"/>
-          </template>
-        </Badge>
+        <Image
+            class="avatar"
+            round
+
+            :src="applyInfo.avatar"
+        />
 
       </div>
 

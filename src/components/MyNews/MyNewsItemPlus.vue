@@ -10,7 +10,7 @@ defineProps<{info:News}>()
     <span class="title">{{info.title}}</span>
     <div>
       <span class="time">{{formatActiveTime(info.createTime)}}</span>
-      <span class="read">{{info.count}}人阅读</span>
+      <span class="count">{{info.readCount}}人阅读</span>
     </div>
   </div>
 </template>
@@ -28,9 +28,12 @@ defineProps<{info:News}>()
   .title {
 
   }
-  .time {
+  .time,.count {
     font-size: small;
     color: gray;
+  }
+  .count {
+    margin-left: 1rem;
   }
 
 }

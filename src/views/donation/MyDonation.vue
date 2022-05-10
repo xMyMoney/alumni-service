@@ -27,13 +27,12 @@ import {provide, ref} from 'vue';
 import MyDonationLogItem from "@components/MyDonation/MyDonationLogItem.vue";
 import {getDonated} from "@api/donation";
 import {useXhr} from "@hooks/useXhr";
+import {getUserId} from "@utils/auth";
 const value = ref('');
 const comeback = () => {
   history.back()
 }
-import {useStore} from "../../store/user-info";
-const userStore = useStore()
-const adapter = async ()=>(await getDonated(userStore.id as number)).data
+const adapter = async ()=>(await getDonated(getUserId() as unknown as number)).data
 const [request, response,loading] = useXhr(adapter,[],true)
 </script>
 

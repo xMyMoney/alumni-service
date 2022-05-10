@@ -5,8 +5,7 @@ import MyDonationRankItem from "@components/MyDonation/MyDonationRankItem.vue";
 import {useRoute} from "vue-router";
 import {Donation, DonationRank, getDonationDetails, addDonationRecord, getLatestRank, getRank} from "@api/donation";
 import {useXhr} from "@hooks/useXhr";
-import {useStore} from "../../store/user-info";
-const userStore = useStore()
+import {getUserId} from "@utils/auth";
 const comeback = () => {
   history.back()
 }
@@ -48,7 +47,7 @@ const goDonation = async ()=> {
     return;
   }
   show.value = false
-  const {msg,code} = await addDonationRecord(donationDetail.value?.id,userStore.id,money.value);
+  const {msg,code} = await addDonationRecord(donationDetail.value?.id,getUserId() as unknown as number,money.value);
   await fetchDonationDetail()
   await fetchLatestRankList()
   await fetchRankList()
@@ -66,7 +65,7 @@ const goDonation = async ()=> {
     <Image
         class="cover"
         fit="contain"
-        src="https://pig-blog.oss-cn-guangzhou.aliyuncs.com/blog-file/img/1638857103861.jpg"
+        :src="donationDetail.cover"
     />
     <div class="info">
       <h3>{{donationDetail.title}}</h3>

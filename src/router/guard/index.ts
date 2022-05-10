@@ -1,4 +1,6 @@
 import type { Router } from "vue-router";
+import {getToken} from "@utils/auth";
+import {Toast} from "vant";
 // import { pageLoading, isProgress } from "@AppService";
 
 // // nprogress
@@ -13,7 +15,7 @@ export function setupRouterGuard(router: Router) {
   // createPageLoadingGuard(router);
   // createPageProgressGuard(router);
   // createHttpGuard(router);
-
+    createPermissionGuard(router)
 }
 
 /**
@@ -50,3 +52,29 @@ export function setupRouterGuard(router: Router) {
 //     axiosCanceler.clearRequest();
 //   });
 // }
+
+
+/**
+ * @description 在切换路由时判断权限
+ */
+function createPermissionGuard(router: Router) {
+    router.beforeEach((to, from, next) => {
+        if(Object.is(to.name,'Login')) {
+            next();
+            return
+        }
+
+        if (getToken()) {
+            next()
+        }else {
+           if(to.meta.noAuth) {
+               next()
+           }else {
+               Toast.fail('未登录')
+               setTimeout(() => {
+                   router.push({name: 'Login'})
+               }, 500)
+           }
+        }
+    })
+}

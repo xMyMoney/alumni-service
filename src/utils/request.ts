@@ -1,4 +1,6 @@
 import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
+import {head} from "lodash";
+import {getToken} from "@utils/auth";
 
 
 
@@ -20,7 +22,8 @@ const instance = axios.create({
 // 请求拦截
 instance.interceptors.request.use(
     (config) => {
-        // 如果有些接口需要认证才访问，就在这统一设置
+        // 如果有些接口需要认证才访问，就在这统一设
+        config.headers.Authorization = getToken()
         return config;
     },
     (err: any) => {}
@@ -31,7 +34,6 @@ instance.interceptors.response.use(
     (res) => {
         //   这里弄返回值拦截，不做的化会出现 response.data.data....
         // return res.data
-
         return res.data;
     },
     (err: any) => {}

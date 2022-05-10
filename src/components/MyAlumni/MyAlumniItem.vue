@@ -1,18 +1,24 @@
 <template>
     <div class="main">
       <div class="left">
-        <Badge>
-          <Image
-              class="avatar"
-              round
-              width="5rem"
-              height="5rem"
-              src="https://img.yzcdn.cn/vant/cat.jpeg"
-          />
-          <template #content>
-            <Icon name="cross" class="badge-icon"/>
-          </template>
-        </Badge>
+<!--        <Badge>-->
+<!--          <Image-->
+<!--              class="avatar"-->
+<!--              round-->
+<!--              width="5rem"-->
+<!--              height="5rem"-->
+<!--              src="https://img.yzcdn.cn/vant/cat.jpeg"-->
+<!--          />-->
+<!--          <template #content>-->
+<!--            <Icon name="cross" class="badge-icon"/>-->
+<!--          </template>-->
+<!--        </Badge>-->
+        <Image
+            class="avatar"
+            round
+
+            :src="alumni.avatar"
+        />
 
       </div>
 
@@ -62,15 +68,14 @@ defineProps<{alumni:Alumni,all:number}>()
 import {formatActiveTime} from "@utils/time";
 import { toClipboard } from '@soerenmartius/vue3-clipboard';
 import {applyChange, ApplyInfo} from "@api/friend-apply";
-import {useStore} from "../../store/user-info";
-const userStore = useStore()
+import {getUserId} from "@utils/auth";
 const educate = (educate:number)=> {
   let t = '';
   switch (educate) {
     case 1: t = '本科';break;
     case 2: t = '硕士';break;
     case 3: t = '博士';break;
-    default : t = '专科';
+    case 0 : t = '专科';break;
   }
   return t;
 }
@@ -86,7 +91,7 @@ const showPopup = () => {
 };
 const applyCard = async (id:number) => {
   applyInfo.value.alumniId = id;
-  applyInfo.value.applyId = userStore.id;
+  applyInfo.value.applyId = getUserId() as unknown as number;
   const {msg,code} = (await applyChange(applyInfo.value))
   if(code == 200) {
     Toast.success('已发送交换请求')

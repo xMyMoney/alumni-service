@@ -6,6 +6,5 @@ export enum ContentType {
 
 export enum RequestInterfaceAddress {
   ALUMNI = "http://localhost:8080",
-  // BLOG = "http://192.168.137.1:8082",
-  // BLOG = "http://120.27.213.163:8082/",
+  // ALUMNI ="http://112.74.93.209:8080",
 }

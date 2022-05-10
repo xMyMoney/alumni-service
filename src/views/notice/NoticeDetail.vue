@@ -35,7 +35,7 @@ fetchNotice()
 .main {
   margin: 0.5rem;
   .top {
-    border: 1px solid red;
+    //border: 1px solid red;
     h3 {
       margin: 0.3rem 0;
     }

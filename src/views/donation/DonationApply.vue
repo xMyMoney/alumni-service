@@ -66,10 +66,9 @@ import MyNavBar from "@components/MyNavBar/MyNavBar.vue";
 import {useRoute, useRouter} from "vue-router";
 import {backApply, proveApply, ProveApply, proveApplyInfo} from "@api/alumni-apply";
 import {applyDonation, DonationApply, getOptions, Options} from "@api/donation";
+import {getUserId} from "@utils/auth";
 const route = useRoute()
-import {useStore} from "../../store/user-info";
-const userStore = useStore()
-provide('navTitle','学位证明')
+provide('navTitle','捐赠申请')
 const id = route.params.id as unknown as number;
 const applyInfo = ref<DonationApply>({})
 const fetchData = async ()=> {
@@ -98,8 +97,8 @@ const onConfirm = (value: Options) => {
 };
 
 const apply = async ()=> {
-  applyInfo.value.applyId = userStore.id
-  applyInfo.value.alumniId = userStore.id
+  applyInfo.value.applyId = getUserId() as unknown as number;
+  applyInfo.value.alumniId = getUserId() as unknown as number;
   applyInfo.value.status = 0
   applyInfo.value.reply = ''
   const {code,msg} = await applyDonation(applyInfo.value);

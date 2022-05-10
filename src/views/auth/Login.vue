@@ -30,7 +30,6 @@
       </Button>
     </div>
   </Form>
-
 </template>
 
 <script lang="ts" setup>
@@ -39,7 +38,7 @@ import { NavBar ,Toast ,Form, Field, CellGroup,Button} from 'vant';
 import {useRouter} from "vue-router";
 import {login, LoginParam} from "@api/alumni";
 import {useStore} from "../../store/user-info";
-import {setToken} from "@utils/auth";
+import {setToken, setUserId} from "@utils/auth";
 const infoStore = useStore()
 const router = useRouter()
 const loginParam = ref<LoginParam>({})
@@ -49,6 +48,7 @@ const onSubmit = async () => {
     if (data.alumni?.status === 1) {
       infoStore.setInfo(data.alumni)
       setToken(data.token as string)
+      setUserId(data.alumni.id as unknown as string)
       await router.push("/")
       console.log('状态村里吗')
       console.log(infoStore.status)

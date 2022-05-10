@@ -22,11 +22,10 @@ import MyFriendApplyInfoItem from "@components/MyInfo/MyFriendApplyInfoItem.vue"
 import {provide, ref} from "vue";
 import {applyInfoList} from "@api/friend-apply";
 import {useXhr} from "@hooks/useXhr";
+import {getUserId} from "@utils/auth";
 provide('navTitle','名片申请')
-import {useStore} from "../../store/user-info";
-const userStore = useStore()
 const value = ref<string>()
-const adapter = async ()=>(await applyInfoList(userStore.id as number)).data
+const adapter = async ()=>(await applyInfoList(getUserId() as unknown as number)).data
 const [request, response,loading] = useXhr(adapter,[],true);
 </script>
 

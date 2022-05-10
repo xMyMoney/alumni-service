@@ -4,14 +4,13 @@ import MyNavBar from "@components/MyNavBar/MyNavBar.vue";
 import {provide, ref} from "vue";
 import {useRoute} from "vue-router";
 import {Activity, getOne, joinActivity} from "@api/activity";
-import {useStore} from "../../store/user-info";
-const userStore = useStore()
+import {getUserId} from "@utils/auth";
 provide('navTitle','详情')
 const route = useRoute()
 const id = route.params.id as unknown as number
 const info = ref<Activity>({})
 const fetchActivity = async ()=> {
-  const {data} = await getOne(id,userStore.id as number);
+  const {data} = await getOne(id,getUserId() as unknown as number);
   info.value = data;
 }
 fetchActivity()
@@ -22,7 +21,7 @@ const showDialog =  ()=> {
         '是否报名参加活动',
   })
       .then(async () => {
-        const {code,msg} = await joinActivity(info.value?.id,userStore.id as number);
+        const {code,msg} = await joinActivity(info.value?.id,getUserId() as unknown as number);
         Toast.success("报名成功")
         await fetchActivity()
       })
@@ -38,7 +37,7 @@ const showDialog =  ()=> {
     <Image
         radius="0.5rem"
         fit="contain"
-        src="https://pig-blog.oss-cn-guangzhou.aliyuncs.com/blog-file/img/1638857103861.jpg"
+        :src="info.cover"
     />
     <div class="info">
       <h3>{{info.title}}</h3>

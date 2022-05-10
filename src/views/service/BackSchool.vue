@@ -80,9 +80,8 @@ import {onMounted, provide, ref} from "vue";
 import MyNavBar from "@components/MyNavBar/MyNavBar.vue";
 import {backApply, BackApply, backApplyInfo} from "@api/alumni-apply";
 import {useRoute, useRouter} from "vue-router";
+import {getUserId} from "@utils/auth";
 provide('navTitle','返校预约')
-import {useStore} from "../../store/user-info";
-const userStore = useStore()
 const time = ref<string>()
 const showCalendar = ref(false);
 const onConfirmTime = (date: Date) => {
@@ -102,7 +101,7 @@ onMounted(()=>{
 })
 
 const apply = async ()=> {
-  applyInfo.value.applyId = userStore.id;
+  applyInfo.value.applyId = getUserId() as unknown as number;
   applyInfo.value.status = 0;
   applyInfo.value.reply = '';
   const {code,msg} = await backApply(applyInfo.value);

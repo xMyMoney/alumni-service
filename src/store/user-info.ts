@@ -35,6 +35,7 @@ export const useStore = defineStore({
         setInfo(info:Partial<Alumni>) {
             this.$patch(info)
         }
-    }
+    },
+
 });
 

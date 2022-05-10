@@ -10,13 +10,20 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/login",
     name: "Login",
-    component: () => import("@views/auth/Login.vue")
+    component: () => import("@views/auth/Login.vue"),
+    meta:{
+      noAuth:true
+    }
   },
   {
     path: "/register/:id?",
     name: "Register",
-    component: () => import("@views/auth/Register.vue")
+    component: () => import("@views/auth/Register.vue"),
+    meta:{
+      noAuth:true
+    }
   },
+    // 放行前面两个得了
   {
     path: "/",
     name: "root",

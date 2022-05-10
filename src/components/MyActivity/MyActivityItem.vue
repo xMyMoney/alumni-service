@@ -15,16 +15,19 @@ defineProps<{info:Activity}>()
           <Image
               radius="0.5rem"
               fit="contain"
-              src="https://pig-blog.oss-cn-guangzhou.aliyuncs.com/blog-file/img/1638857103861.jpg"
+              :src="info.cover"
           />
-          <span class="title">{{info.title}}</span>
+
         </div>
         <div class="left">
+
           <div>
+
+<!--            <span class="title">{{info.title}}</span>-->
 <!--            <Tag style="margin-right: 0.05rem" v-if="info.status === 0" type="primary">未开始</Tag>-->
 <!--            <Tag style="margin-right: 0.05rem" v-else-if="info.status === 1" type="success">进行中</Tag>-->
 <!--            <Tag style="margin-right: 0.05rem" v-else type="danger">已结束</Tag>-->
-            <Tag type="primary">{{info.category}}</Tag>
+            <Tag type="primary">{{info.title}}</Tag>
           </div>
           <div>
             <Icon name="clock-o" />
@@ -46,7 +49,7 @@ defineProps<{info:Activity}>()
       </div>
     </div>
     <template #right v-if="myActivity">
-      <Button square text="删除" type="danger" class="delete-bottom" />
+      <Button square text="退出" type="danger" class="delete-bottom" />
     </template>
   </SwipeCell>
 </template>
@@ -70,7 +73,8 @@ defineProps<{info:Activity}>()
       //border: 1px solid red;
       position: relative; //add by jc
       .title {
-        color: #fff; //update by jc
+        //color: #fff; //update by jc
+        font-weight:bold;
         position: absolute;
         left: 50%;
         top: 50%;
@@ -81,10 +85,10 @@ defineProps<{info:Activity}>()
 
 
 
-  .info {
+  .left {
     //border: 1px solid red;
     span {
-      //font-size: x-small;
+      font-size: x-small;
     }
   }
 

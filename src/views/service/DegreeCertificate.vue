@@ -58,9 +58,8 @@ import {onMounted, provide, ref} from "vue";
 import MyNavBar from "@components/MyNavBar/MyNavBar.vue";
 import {useRoute, useRouter} from "vue-router";
 import {backApply, proveApply, ProveApply, proveApplyInfo} from "@api/alumni-apply";
+import {getUserId} from "@utils/auth";
 const route = useRoute()
-import {useStore} from "../../store/user-info";
-const userStore = useStore()
 provide('navTitle','学位证明')
 const id = route.params.id as unknown as number;
 const applyInfo = ref<ProveApply>({})
@@ -72,7 +71,7 @@ onMounted(()=> {
   fetchData();
 })
 const apply = async ()=> {
-  applyInfo.value.applyId = userStore.id;
+  applyInfo.value.applyId = getUserId() as unknown as number;
   applyInfo.value.proveType = 1
   applyInfo.value.status = 0
   applyInfo.value.reply = ''

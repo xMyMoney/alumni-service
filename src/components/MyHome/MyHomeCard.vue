@@ -8,7 +8,7 @@ const images = [
   "https://pig-blog.oss-cn-guangzhou.aliyuncs.com/blog-file/img/1638857103861.jpg",
 ];
 // const images = ref<string[]>()
-// const router = useRouter();
+const router = useRouter();
 // const fetchImg = async ()=>{
 //   const {data} = await getSlideshow()
 //   images.value = data

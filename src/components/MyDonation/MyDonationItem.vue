@@ -13,7 +13,7 @@ defineProps<{info:Donation}>()
             fit="contain"
             round
             radius="10px"
-            src="https://img.yzcdn.cn/vant/cat.jpeg"
+            :src="info.cover"
         />
 
     </div>

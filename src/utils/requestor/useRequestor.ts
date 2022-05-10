@@ -2,7 +2,9 @@ import { ContentType, RequestInterfaceAddress } from "./useAxiosEnums";
 import { AxiosTransform } from "./useAxiosTransform";
 import { getToken } from "../auth";
 import { CustomAxios } from "./useAxios";
-
+import {useRouter} from "vue-router";
+import {Toast} from "vant";
+const router = useRouter()
 const transform: AxiosTransform = {
   // 请求成功后数据处理
   requestSuccessHandler(response, options) {
@@ -10,9 +12,16 @@ const transform: AxiosTransform = {
 
     const { data } = response;
     const { code, msg } = data;
-
+    if (code === 403) {
+      Toast.fail(msg)
+      setTimeout( ()=>{
+         // router.push('/login')
+        location.href='/login'
+      },500)
+    }
     if (code == 500) {
       // 出错操作
+      Toast.fail('系统忙')
     }
 
     // 不进行任何处理 -

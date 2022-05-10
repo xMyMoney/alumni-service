@@ -44,14 +44,47 @@ export interface LoginRes {
     token?:string;
 }
 
-export interface RegisterParam {
-    username?:string;
-
-}
-
 export interface LoginParam {
     stuId?:string;
     password?:string;
+}
+
+export interface AlumniStatistics {
+    donationCount?:number;
+    activityCount?:number;
+    applyCount?:number;
+}
+
+export async function getUserInfo() {
+    return useRequestor.request<HttpResponse<Alumni>>({
+        url:'alumni/info',
+        method:'GET',
+    })
+}
+
+export async function getStatistics(id:number){
+    return useRequestor.request<HttpResponse<AlumniStatistics>>({
+        url:'alumni/statistics/'+id,
+        method:'GET'
+    })
+}
+
+export interface FileVo {
+    fileName?:string;
+    fileUrl?:string;
+}
+
+export async function uploadImg(file:File) {
+    const formData = new FormData();
+    formData.append('file',file)
+    return useRequestor.request<HttpResponse<FileVo>>({
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        },
+        url:'file/upload',
+        method:'POST',
+        data:formData
+    })
 }
 
 export async function register(data:Alumni) {

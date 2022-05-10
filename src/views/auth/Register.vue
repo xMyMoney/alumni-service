@@ -10,9 +10,10 @@
     <CellGroup inset>
       <Field required name="uploader" label="头像">
         <template #input>
-          <Uploader :before-read="beforeRead" :after-read="afterRead" />
+          <Uploader v-model="imgList"  :after-read="afterRead" />
         </template>
       </Field>
+
       <Field
           required
           v-model="alumni.username"
@@ -99,9 +100,11 @@
 
 <script lang="ts" setup>
 import {onMounted, ref} from 'vue';
-import { NavBar ,Toast ,Form, Field, CellGroup,Button,RadioGroup,Radio,Uploader,Popup,DatetimePicker} from 'vant';
-import {Alumni, register, registerInfo} from "@api/alumni";
+import { NavBar ,Image,Toast ,Form, Field, CellGroup,Button,RadioGroup,Radio,Uploader,Popup,DatetimePicker} from 'vant';
+import {Alumni, FileVo, register, registerInfo, uploadImg} from "@api/alumni";
 import {useRoute, useRouter} from "vue-router";
+import axios from "axios";
+import {useRequestor} from "@utils/requestor/useRequestor";
 const comeback = () => {
   history.back()
 }
@@ -121,12 +124,44 @@ onMounted(()=> {
   }
 })
 
-
+const avatar = ref<any>()
 const beforeRead = (file:File)=> {
-
+  if (file.type !== 'image/jpeg') {
+    Toast('请上传 jpg 格式图片');
+    return false;
+  }
+  return true;
 }
-const afterRead = (file:File)=> {
-  alumni.value.avatar = file.name
+const uploadAvatar = async (file:File)=> {
+  const {data} = await  uploadImg(file)
+  alumni.value.avatar = data.fileUrl
+}
+const imgList=ref<any[]>([])
+
+const afterRead = (file: any)=> {
+  // console.log(file)
+  // const {data} = await  uploadImg(file.file)
+  // alumni.value.avatar = data.fileUrl
+  // uploadAvatar(file.file)
+  const formData = new FormData();
+  formData.append('file',file.file)
+  console.log(formData)
+  useRequestor.request<HttpResponse<FileVo>>({
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
+    url:'file/upload',
+    method:'POST',
+    data:formData
+  }).then((res)=> {
+
+    alumni.value.avatar = res.data.fileUrl
+    console.log(123)
+    // imgList.value=[{url:res.data.fileUrl}]
+  }).catch(e=>{
+    console.log(e)
+  })
+
 }
 const onSubmit = async () => {
   const {msg,code} = await register(alumni.value);

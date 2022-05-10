@@ -4,7 +4,7 @@ export interface News {
     title?:string;
     content?:string;
     createTime?:Date;
-    count?:number;
+    readCount?:number;
 }
 
 export async function getList() {

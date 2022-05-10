@@ -3,8 +3,7 @@ import {Tag, Button, SwipeCell, Toast,Popup,Field} from "vant";
 import {useRouter} from "vue-router";
 import {addDonationRecord, Donation} from "@api/donation";
 import {ref} from "vue";
-import {useStore} from "../../store/user-info";
-const userStore = useStore()
+import {getUserId} from "@utils/auth";
 const router = useRouter()
 defineProps<{info:Donation}>()
 const money = ref<number>()
@@ -19,7 +18,7 @@ const goDonation = async (donationId:number)=> {
     return;
   }
   show.value = false
-  const {msg,code} = await addDonationRecord(donationId,userStore.id,money.value);
+  const {msg,code} = await addDonationRecord(donationId,getUserId() as unknown as number,money.value);
 }
 </script>
 <template>

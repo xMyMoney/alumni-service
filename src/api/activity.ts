@@ -33,7 +33,8 @@ export async function getOne(activityId:number,alumniId:number) {
 export async function joinActivity(activityId?:number,alumniId?:number) {
     return useRequestor.request<HttpMessage>({
         url:'/activity-record/one',
-        method:'POST'
+        method:'POST',
+        data:{alumniId,activityId}
     })
 }
 

@@ -170,26 +170,27 @@ export class CustomAxios {
   /**
    * @description 文件上传
    */
-  uploadFile<T = any>(config: AxiosRequestConfig, params: UploadFileParams) {
+  uploadFile<T = any>(config: AxiosRequestConfig, file:File) {
     const formData = new FormData();
 
-    const { data, name, file, filename } = params;
+    // const { data, name, file, filename } = params;
+    //
+    // if (data) {
+    //   Object.keys(data).forEach((key) => {
+    //     const value = data[key];
+    //
+    //     if (Array.isArray(value)) {
+    //       value.forEach((item) => formData.append(`${key}[]`, item));
+    //       return;
+    //     }
+    //
+    //     formData.append(key, data[key]);
+    //   });
+    // }
 
-    if (data) {
-      Object.keys(data).forEach((key) => {
-        const value = data[key];
+    // formData.append(name || "file", file, filename);
 
-        if (Array.isArray(value)) {
-          value.forEach((item) => formData.append(`${key}[]`, item));
-          return;
-        }
-
-        formData.append(key, data[key]);
-      });
-    }
-
-    formData.append(name || "file", file, filename);
-
+    formData.append("file", file);
     return this.axiosInstance.request<T>({
       ...config,
       // @ts-ignore
@@ -197,8 +198,6 @@ export class CustomAxios {
       method: "POST",
       headers: {
         "Content-Type": ContentType.FORM_DATA,
-        // @ts-ignore
-        ignoreCancelToken: true,
       },
     });
   }
